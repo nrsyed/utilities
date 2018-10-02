@@ -24,9 +24,12 @@ def get_urls(subreddit, max_pages=0):
         try:
             page = urllib.request.urlopen(request)
             soup = BeautifulSoup(page, "html.parser")
-            url = soup.find("span", {"class": "next-button"}).find("a")["href"]
-        except AttributeError as e:
-            url = None
+            span_tags = soup.find("span", {"class": "next-button"})
+            
+            if span_tags is not None:
+                url = span_tags.find("a")["href"]
+            else:
+                url = None
         except Exception as e:
             raise e
 
