@@ -3,14 +3,30 @@ import urllib.request
 from bs4 import BeautifulSoup
 
 def get_urls(subreddit, max_pages=0, category="hot"):
-    """
-    Get the URLs for all available pages of a subreddit to avoid clicking
-    through tens of pages.
+    """!
+
+    @brief Get the URLs for all available pages of a subreddit to avoid
+    clicking through tens of pages.
+
+    This script is not equivalent to a search, as Reddit currently caps the
+    number of threads that can be viewed (by clicking "next" at the bottom of
+    each page of a subreddit) at 1000. Older threads still exist and can be
+    found through a Reddit search or Google (or other search engine) search.
+
+    @param subreddit Name of the subreddit (e.g., "AskEngineers", not
+        "r/AskEngineers").
+    @param max_pages Maximum number of pages of threads to return. In practice,
+        due to the 1000 thread limit, up to 40 pages will be returned
+        (25 threads per page).
+    @param category Subreddit thread category: hot (default), new, rising,
+        controversial, top, or gilded.
+    @return urls A list of urls corresponding to the available pages.
     """
 
     if category not in ("hot", "new", "rising", "controversial", "top", "gilded"):
         category = "hot"
 
+    # Add header to allow https.
     headers = {"User-Agent": "Mozilla/5.0"}
 
     # Must use old reddit since new reddit uses infinite scroll.
