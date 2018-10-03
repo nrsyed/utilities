@@ -44,17 +44,14 @@ def get_urls(subreddit, max_pages=0, category="hot"):
             break
 
         request = urllib.request.Request(url, headers=headers)
-        try:
-            page = urllib.request.urlopen(request)
-            soup = BeautifulSoup(page, "html.parser")
-            span_tags = soup.find("span", {"class": "next-button"})
-            
-            if span_tags is not None:
-                url = span_tags.find("a")["href"]
-            else:
-                url = None
-        except Exception as e:
-            raise e
+        page = urllib.request.urlopen(request)
+        soup = BeautifulSoup(page, "html.parser")
+        span_tags = soup.find("span", {"class": "next-button"})
+        
+        if span_tags is not None:
+            url = span_tags.find("a")["href"]
+        else:
+            url = None
 
     return urls
 
