@@ -2,17 +2,24 @@ import argparse
 import urllib.request
 from bs4 import BeautifulSoup
 
-def get_urls(subreddit, max_pages=0):
+def get_urls(subreddit, max_pages=0, category="hot"):
     """
-    Get the URLs for all available pages of a subreddit (sorted by new)
-    to avoid clicking through tens of pages.
+    Get the URLs for all available pages of a subreddit to avoid clicking
+    through tens of pages.
     """
+
+    if category not in ("hot", "new", "rising", "controversial", "top", "gilded"):
+        category = "hot"
+
+    headers = {"User-Agent": "Mozilla/5.0"}
 
     # Must use old reddit since new reddit uses infinite scroll.
     base_url = "https://old.reddit.com/r/"
-    headers = {"User-Agent": "Mozilla/5.0"}
+    url = base_url + subreddit
 
-    url = base_url + subreddit + "/new/"
+    if category != "hot":
+        url += "/{}".format(category)
+
     urls = []
     while url:
         urls.append(url)
@@ -40,8 +47,12 @@ if __name__ == "__main__":
     ap.add_argument("sub", type=str, help="Name of subreddit")
     ap.add_argument("-n", "--num-pages", type=int, default=0,
         help="Maximum number of pages to return")
+    ap.add_argument("-c", "--category", type=str, default="hot",
+        help="Category: hot (default), new, rising, controversial,"\
+            "top, gilded.")
     args = vars(ap.parse_args())
 
-    urls = get_urls(args["sub"], args["num_pages"])
+    urls = get_urls(args["sub"], max_pages=args["num_pages"],
+        category=args["category"])
     for url in urls:
         print(url)
