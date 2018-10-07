@@ -26,7 +26,7 @@ def spring(start, end, nodes, width):
     u_t = np.subtract(end, start) / length
     u_n = np.array([[0, -1], [1, 0]]).dot(u_t)
 
-    # Initialize array of x (row 0) and y (row 1) coords of the nodes+1 points.
+    # Initialize array of x (row 0) and y (row 1) coords of the nodes+2 points.
     spring_coords = np.zeros((2, nodes + 2))
     spring_coords[:,0], spring_coords[:,-1] = start, end
 
