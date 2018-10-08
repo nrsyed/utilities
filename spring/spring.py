@@ -15,8 +15,11 @@ def spring(start, end, nodes, width):
     # Check that nodes is at least 1.
     nodes = max(int(nodes), 1)
 
+    # Convert to numpy array to account for inputs of different types/shapes.
+    start, end = np.array(start).reshape((2,)), np.array(end).reshape((2,))
+
     # If both points are coincident, return the x and y coords of one of them.
-    if start == end:
+    if (start == end).all():
         return start[0], start[1]
 
     # Calculate length of spring (distance between endpoints).
