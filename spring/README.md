@@ -48,7 +48,7 @@ provided.
 **width**: *float*
 
 The width *w* of the spring. If *w* is not large enough for the distance
-between the endpoints (<a href="#min_width">see above</a>), it will be
+between the endpoints (<a href="#min_width">see below</a>), it will be
 adjusted automatically and the spring will simply be displayed as a line.
 
 ### Returns
