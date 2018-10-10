@@ -118,7 +118,7 @@ as follows:
 
 <img src="images/eqn2.png" height=60 alt="Equation 2" />
 
-<a name="min_width" />
+<a name="min_width"></a>
 for 0 < *i* < *n+1*. Observe that the spring can attain a maximum length of
 *nw*, at which point the nodes would be collinear, i.e., the spring would
 be a straight line. If *l > nw*, the quantity in the square root will be
