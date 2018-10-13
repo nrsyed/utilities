@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 
 def get_urls(subreddit, max_pages=0, category="hot"):
     """!
-
     @brief Get the URLs for all available pages of a subreddit to avoid
     clicking through tens of pages.
 
