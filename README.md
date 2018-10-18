@@ -25,6 +25,13 @@ don't have to click "Next" several dozen times to get to the last page.
 
 [spring.py](spring/spring.py)
 
+<a href="https://youtu.be/Y70-afmGeh4">
+  <span float="left">
+    <img src="spring/images/demo2.png" width=45% height=auto />
+    <img src="spring/images/demo3.png" width=45% height=auto />
+  </span>
+</a>
+
 A Python function that returns the (x, y) coordinates needed to draw a
 sawtooth-shaped spring between any two points in 2D space. The spring width
 ("diameter") and the number of spring coils can be chosen.
